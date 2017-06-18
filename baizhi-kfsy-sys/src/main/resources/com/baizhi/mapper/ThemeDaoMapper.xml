@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.ThemeDao">
+
+    <!--根据主键查询一个药品主题-->
+    <select id="selectOne" parameterType="String" resultType="Theme">
+        select id,name,url,description from kfsy_theme where id = #{id}
+    </select>
+
+    <insert id="insert" parameterType="Theme">
+        insert into kfsy_theme values (#{id},#{name},#{url},#{description})
+    </insert>
+
+
+    <!--更新一个主题-->
+    <update id="update" parameterType="Theme">
+        update kfsy_theme set name = #{name}, url = #{url},description=#{description} where id = #{id}
+    </update>
+
+    <!--查询所有药品主题-->
+    <select id="selectAll" resultType="Theme">
+        select id,name,url,description from kfsy_theme
+    </select>
+
+    <!--删除一个主题-->
+    <delete id="delete" parameterType="String">
+        delete from kfsy_theme where id = #{id}
+    </delete>
+
+</mapper>

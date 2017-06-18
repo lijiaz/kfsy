@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.CategoryDao">
+    
+    <resultMap id="categoryMap" type="Category">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="url" property="url"/>
+        <collection property="products" select="com.baizhi.dao.ProductDao.selectByCategory" column="id"/>
+    </resultMap>
+
+    <!--根据主键查询一个药品种类-->
+    <select id="selectOne" parameterType="String" resultMap="categoryMap">
+        select id,name,url from kfsy_category where id = #{id}
+    </select>
+
+    <insert id="insert" parameterType="Category">
+        insert into kfsy_category values (#{id},#{name},#{url})
+    </insert>
+
+
+    <!--更新一个种类-->
+    <update id="update" parameterType="Category">
+        update kfsy_category set name = #{name}, url = #{url} where id = #{id}
+    </update>
+
+    <!--查询所有药品种类-->
+    <select id="selectAll" resultMap="categoryMap">
+        select id,name,url from kfsy_category
+    </select>
+
+    <!--删除一个-->
+    <delete id="delete" parameterType="String">
+        delete from kfsy_category where id = #{id}
+    </delete>
+
+</mapper>

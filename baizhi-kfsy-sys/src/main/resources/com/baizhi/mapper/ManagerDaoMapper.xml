@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.ManagerDao">
+
+    <!--根据用户名查询一个管理员用户-->
+    <select id="selectOneByUserName" parameterType="string" resultType="Manager">
+        select id,username,password,salt from kfsy_manager where username = #{userName}
+    </select>
+
+    <!--插入一个管理员用户-->
+    <insert id="insert" parameterType="Manager">
+        insert into kfsy_manager values(#{id},#{userName},#{password},#{salt},#{lev})
+    </insert>
+
+  
+</mapper>

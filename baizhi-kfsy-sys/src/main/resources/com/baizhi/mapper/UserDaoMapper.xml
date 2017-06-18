@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.UserDao">
+
+    <!--根据主键查询一个用户-->
+    <select id="selectOne" parameterType="String" resultType="User">
+        select id,phone,nickname,password,salt,createDate,status from kfsy_user where id = #{id}
+    </select>
+
+    <insert id="insert" parameterType="User">
+        insert into kfsy_user values (#{id},#{phone},#{nickName},#{password},#{salt},#{createDate},#{status})
+    </insert>
+
+    <!--删除一个用户-->
+    <delete id="delete" parameterType="string">
+        delete from kfsy_user where id =#{id}
+    </delete>
+
+    <!--更新一个用户-->
+    <update id="update" parameterType="User">
+        update kfsy_user set nickname = #{nickName} where id = #{id}
+    </update>
+
+    <!--查询所有用户-->
+    <select id="selectAll" resultType="User">
+        select id,phone,nickname,password,salt,createDate,status from kfsy_user
+    </select>
+
+    <!--根据手机号查询一个-->
+    <select id="selectOneByPhone" parameterType="string" resultType="User">
+        select id,phone,nickname,password,salt,createDate,status from kfsy_user where phone = #{phone}
+    </select>
+
+    <!--根据手机号模糊查询-->
+    <select id="selectByPhone" parameterType="String" resultType="User">
+        select id,phone,nickname,password,salt,createDate,status from kfsy_user where phone like concat('%',#{phone},'%')
+    </select>
+
+    <!--根据昵称模糊查询-->
+    <select id="selectByNickName" parameterType="String" resultType="User">
+        select id,phone,nickname,password,salt,createDate,status from kfsy_user where nickname like concat('%',#{nickName},'%')
+    </select>
+
+    <!--查询某一段时间注册人数-->
+    <select id="selectCount" resultType="User">
+        select id,phone,nickname,password,salt,createDate,status from kfsy_user where createDate BETWEEN #{beforeDate} and #{currentDate}
+    </select>
+  
+</mapper>

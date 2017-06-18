@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.AddressDao">
+
+    <resultMap id="addressMap" type="Address">
+        <id column="id" property="id"/>
+        <result column="receiver" property="receiver"/>
+        <result column="phone" property="phone"/>
+        <result column="address" property="address"/>
+        <association property="user" javaType="user" select="com.baizhi.dao.UserDao.selectOne" column="userid"/>
+    </resultMap>
+
+    <!--根据主键查询一条地址-->
+    <select id="selectOne" parameterType="String" resultMap="addressMap">
+        select id,receiver,phone,address,userid from kfsy_address where id = #{id}
+    </select>
+
+    <insert id="insert" parameterType="Address">
+        insert into kfsy_address values (#{id},#{receiver},#{phone},#{address},#{user.id})
+    </insert>
+
+    <!--删除一个地址-->
+    <delete id="delete" parameterType="string">
+        delete from kfsy_address where id = #{id}
+    </delete>
+
+    <!--更新一个地址-->
+    <update id="update" parameterType="Address">
+        update kfsy_address set receiver = #{receiver},phone=#{phone},address=#{address} where id = #{id}
+    </update>
+
+    <!--查询所有用户的收货地址-->
+    <select id="selectAll" resultType="Address">
+        select id,receiver,phone,address,userid from kfsy_address
+    </select>
+
+    <!--查询某个用户的所有地址-->
+    <select id="selectAllByUserId" resultMap="addressMap">
+        select id,receiver,phone,address,userid from kfsy_address where userid = #{id}
+    </select>
+
+  
+</mapper>

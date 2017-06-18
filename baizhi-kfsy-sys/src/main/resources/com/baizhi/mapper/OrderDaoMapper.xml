@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.OrderDao">
+
+    <!--插入一个订单-->
+    <insert id="insert" parameterType="Order">
+      insert into kfsy_order values(#{id},#{orderNum},#{totalPrice},#{createDate},#{orderStatus},#{payStatus},#{remarks},#{user.id},#{address.id})
+    </insert>
+
+    <resultMap id="orderMap" type="Order">
+        <id column="id" property="id"/>
+        <result column="orcerNum" property="orderNum"/>
+        <result column="totalPrice" property="totalPrice"/>
+        <result column="createDate" property="createDate"/>
+        <result column="orderStatus" property="orderStatus"/>
+        <result column="payStatus" property="payStatus"/>
+        <result column="remarks" property="remarks"/>
+        <association property="user" select="com.baizhi.dao.UserDao.selectOne" column="userid"/>
+        <association property="address" select="com.baizhi.dao.AddressDao.selectOne" column="addressid"/>
+        <collection property="orderItems" select="com.baizhi.dao.OrderItemDao.selectByOrderId" column="id"/>
+    </resultMap>
+
+    <!--查询一个订单-->
+    <select id="selectOne" parameterType="String" resultMap="orderMap">
+        select id,orderNum,totalPrice,createDate,orderStatus,payStatus,remarks,userid,addressid from kfsy_order where id = #{id}
+    </select>
+
+    <!--查询一个用户的所有订单-->
+    <select id="selectByUserId" parameterType="String" resultMap="orderMap">
+        select id,orderNum,totalPrice,createDate,orderStatus,payStatus,remarks,userid,addressid from kfsy_order where userid = #{id}
+    </select>
+
+    <!--更新一个订单-->
+    <update id="update" parameterType="Order">
+        update kfsy_order set orderStatus = #{orderStatus},payStatus#{payStatus},remarks=#{remarks} where id = #{id}
+    </update>
+
+    <!--根据订单状态查询-->
+    <select id="selectByOrderStatus" parameterType="String" resultMap="orderMap">
+        select id,orderNum,totalPrice,createDate,orderStatus,payStatus,remarks,userid,addressid from kfsy_order where orderStatus = #{orderStatus}
+    </select>
+
+    <!--根据支付状态查询-->
+    <select id="selectByPayStatus" parameterType="String" resultMap="orderMap">
+        select id,orderNum,totalPrice,createDate,orderStatus,payStatus,remarks,userid,addressid from kfsy_order where payStatus = #{payStatus}
+    </select>
+
+    <!--查询所有订单-->
+    <select id="selectAll" resultMap="orderMap">
+        select id,orderNum,totalPrice,createDate,orderStatus,payStatus,remarks,userid,addressid from kfsy_order
+    </select>
+</mapper>

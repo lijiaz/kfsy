@@ -1,0 +1,136 @@
+[
+  {
+    "id": "1528566b-bb40-4d36-a7a4-844fc15be3cb",
+    "title": "用户管理",
+    "icon": "icon-2012081511913",
+    "href": "",
+    "children": [
+      {
+        "id": "1s2d566b-aa40-4d3s-a7a4-241fd45be3re",
+        "title": "用户列表",
+        "icon": "icon-application_view_detail",
+        "href": "/back/main/user/index.jsp"
+      },
+      {
+        "id": "1s2d566b-aa40-4d3s-a7a4-2f1fd45be3re",
+        "title": "用户反馈",
+        "icon": "icon-email",
+        "href": "/back/main/user/feedback.jsp"
+      }
+    ]
+  },
+  {
+    "id": "sv28s66b-hf42-a3fc-b7a4-0mdfcd5s4rds",
+    "title": "首页管理",
+    "icon": "icon-2012080412263",
+    "href": "",
+    "children": [
+      {
+        "id": "1s2d526b-ak40-4d3s-a7a4-240fd45be9re",
+        "title": "限时抢购",
+        "icon": "icon-time",
+        "href": "/index.jsp"
+      },
+      {
+        "id": "1s2d526b-ak40-4d3s-a7a4-240fd45be9re",
+        "title": "主题列表",
+        "icon": "icon-star_grey",
+        "href": "/back/main/homepage/theme.jsp"
+      },
+      {
+        "id": "1s2d526b-ak40-4d3s-a7a4-240fd45be9re",
+        "title": "主题商品管理",
+        "icon": "icon-application_view_detail",
+        "href": "/back/main/homepage/themeMedicine.jsp"
+      }
+    ]
+  },
+  {
+    "id": "1528566b-bb40-4d36-a7a4-844fc15be3cb",
+    "title": "药品管理",
+    "icon": "icon-pill",
+    "href": "",
+    "children": [
+      {
+        "id": "1s2d566b-aa40-4d3s-a7a4-241fd45be3re",
+        "title": "药品类别",
+        "icon": "icon-application_view_tile",
+        "href": "/back/main/pill/category.jsp"
+      },
+      {
+        "id": "1s2d566b-aa40-4d3s-a7a4-2f1fd45be3re",
+        "title": "药品列表",
+        "icon": "icon-application_view_detail",
+        "href": "/back/main/pill/index.jsp"
+      }
+    ]
+  },
+  {
+    "id": "1528566b-bb40-4d36-a7a4-844fc15be3cb",
+    "title": "订单管理",
+    "icon": "icon-money",
+    "href": "",
+    "children": [
+      {
+        "id": "1s2d566b-aa40-4d3s-a7a4-241fd45be3re",
+        "title": "订单列表",
+        "icon": "icon-application_view_tile",
+        "href": "/back/main/order/index.jsp"
+      }
+    ]
+  },
+  {
+    "id": "1528566b-bb40-4d36-a7a4-844fc15be3cb",
+    "title": "评价管理",
+    "icon": "icon-asterisk_yellow",
+    "href": "",
+    "children": [
+      {
+        "id": "1s2d566b-aa40-4d3s-a7a4-241fd45be3re",
+        "title": "评价列表",
+        "icon": "icon-application_view_tile",
+        "href": "/back/main/evaluate/index.jsp"
+      }
+    ]
+  },
+  {
+    "id": "1528566b-bb40-4d36-a7a4-844fc15be3cb",
+    "title": "界面管理",
+    "icon": "icon-cursor",
+    "href": "",
+    "children": [
+      {
+        "id": "1s2d566b-aa40-4d3s-a7a4-241fd45be3re",
+        "title": "轮播图管理",
+        "icon": "icon-cut",
+        "href": "/back/main/pageui/lbimage.jsp"
+      },
+      {
+        "id": "1s2d566b-aa40-4d3s-a7a4-241fd45be3re",
+        "title": "药品图片管理",
+        "icon": "icon-cut_red",
+        "href": "/back/main/pageui/image.jsp"
+      }
+    ]
+  },{
+  "id": "1528566b-bb40-4d36-a7a4-844fc15be3cb",
+  "title": "系统管理",
+  "icon": "icon-2012080404391",
+  "href": "",
+  "children": [
+    {
+      "id": "1s2d566b-aa40-4d3s-a7a4-241fd45be3re",
+      "title": "系统状态",
+      "icon": "icon-application_osx_terminal",
+      "href": "/back/main/sys/sysStatus.jsp"
+    },
+    {
+      "id": "1s2d566b-aa40-4d3s-a7a4-241fd45be3re",
+      "title": "系统日志",
+      "icon": "icon-page_white_paste",
+      "href": "/index.jsp"
+    }
+  ]
+}
+
+]

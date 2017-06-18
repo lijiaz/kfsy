@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.TpDao">
+
+    <!--添加-->
+    <insert id="insert" parameterType="Tp">
+        insert into kfsy_tp values (#{productid},#{themeid})
+    </insert>
+
+    <!--删除-->
+    <delete id="del" parameterType="Tp">
+        delete from kfsy_tp where productid = #{productid} AND themeid = #{themeid}
+    </delete>
+
+    <!--根据主题查询所有商品-->
+    <select id="selectProductsByTheme" parameterType="string" resultType="product">
+        select id,name,treatment,currentPrice,oldPrice,stock,sales,entryDate,status,categoryid,thumbnail FROM kfsy_product p
+        left join kfsy_tp
+        on productid = id
+        where themeid = #{id}
+    </select>
+  
+</mapper>

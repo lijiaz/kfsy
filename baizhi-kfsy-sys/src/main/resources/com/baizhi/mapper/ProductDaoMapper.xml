@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.ProductDao">
+
+
+    <resultMap id="productMap" type="Product">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="treatment" property="treatment"/>
+        <result column="currentPrice" property="currentPrice"/>
+        <result column="oldPrice" property="oldPrice"/>
+        <result column="stock" property="stock"/>
+        <result column="sales" property="sales"/>
+        <result column="entryDate" property="entryDate"/>
+        <result column="status" property="status"/>
+        <result column="thumbnail" property="thumbnail"/>
+        <association property="category" select="com.baizhi.dao.CategoryDao.selectOne" column="categoryid"/>
+    </resultMap>
+
+    <!--根据主键查询一个药品详情-->
+    <select id="selectOne" parameterType="String" resultMap="productMap">
+        select id,name,treatment,currentPrice,oldPrice,stock,sales,entryDate,status,categoryid,thumbnail from kfsy_product where id = #{id}
+    </select>
+
+    <!--插入一个药品-->
+    <insert id="insert" parameterType="Product">
+        insert into kfsy_product values (#{id},#{name},#{treatment},#{currentPrice},#{oldPrice},#{stock},#{sales},#{entryDate},#{status},#{category.id},#{thumbnail})
+    </insert>
+
+    <!--查询所有-->
+    <select id="selectAll" resultMap="productMap">
+        select id,name,treatment,currentPrice,oldPrice,stock,sales,entryDate,status,categoryid,thumbnail from kfsy_product
+    </select>
+
+    <!--根据药品名查询一个-->
+    <select id="selectByName" resultMap="productMap">
+        select id,name,treatment,currentPrice,oldPrice,stock,sales,entryDate,status,categoryid,thumbnail from kfsy_product where name = #{name}
+    </select>
+
+    <!--删除一个商品-->
+    <delete id="delete" parameterType="String">
+        delete from kfsy_product where id = #{id}
+    </delete>
+
+    <!--根据类型id查询所有商品-->
+    <select id="selectByCategory" parameterType="String" resultType="Product">
+        select id,name,treatment,currentPrice,oldPrice,stock,sales,entryDate,status,categoryid,thumbnail from kfsy_product where categoryid = #{id}
+    </select>
+
+</mapper>

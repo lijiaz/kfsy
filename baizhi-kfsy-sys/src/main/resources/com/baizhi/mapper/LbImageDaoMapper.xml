@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.LbImageDao">
+
+    <!--根据主键查询一个轮播图-->
+    <select id="selectOne" parameterType="String" resultType="LbImage">
+        select id,name,url,status from kfsy_lbimage where id = #{id}
+    </select>
+
+    <!--插入一个轮播图-->
+    <insert id="insert" parameterType="LbImage">
+        insert into kfsy_lbimage values (#{id},#{name},#{url},#{status})
+    </insert>
+
+
+    <!--更新一个轮播图-->
+    <update id="update" parameterType="LbImage">
+        update kfsy_lbimage set status = #{status} where id = #{id}
+    </update>
+
+    <!--查询所有轮播图-->
+    <select id="selectAll" resultType="LbImage">
+        select id,name,url,status from kfsy_lbimage
+    </select>
+
+    <!--删除一个轮播图-->
+    <delete id="delete" parameterType="String">
+        delete from kfsy_lbimage where id = #{id}
+    </delete>
+
+    <!--查询所有状态为on的轮播图-->
+    <select id="selectAllUse" resultType="LbImage">
+        select id,name,url,status from kfsy_lbimage where status = 'on'
+    </select>
+
+</mapper>

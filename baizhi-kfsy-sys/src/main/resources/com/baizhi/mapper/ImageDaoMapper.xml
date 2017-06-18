@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.ImageDao">
+
+    <!--根据药品id查询该药品的所有图片-->
+    <select id="selectOne" parameterType="String" resultType="Image">
+        select id,name,url,type,medicineid from kfsy_image where medicineid = #{medicineid}
+    </select>
+
+    <!--插入一条数据-->
+    <insert id="insert" parameterType="Image">
+        insert into kfsy_image values (#{id},#{name},#{url},#{medicine.id},#{type})
+    </insert>
+
+    <!--删除一张图片-->
+    <delete id="delete" parameterType="string">
+        delete from kfsy_image where id = #{id}
+    </delete>
+
+    <!--根据药品id删除该药品下的所有图片-->
+    <delete id="deleteByMedicineId" parameterType="String">
+         delete from kfsy_image where medicineid = #{medicineId}
+    </delete>
+
+    <!--查询所有图片并排序-->
+    <select id="selectAll" resultType="Image">
+        select id,name,url,type,medicineid from kfsy_image order by name
+    </select>
+
+  
+</mapper>

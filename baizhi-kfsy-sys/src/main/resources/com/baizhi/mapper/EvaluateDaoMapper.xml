@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.EvaluateDao">
+
+    <!--添加一个评价-->
+    <insert id="insert" parameterType="Evaluate">
+        insert into kfsy_evaluate values (#{id},#{content},#{star},#{createDate},#{order.id},#{user.id})
+    </insert>
+
+    <resultMap id="evaluateMap" type="Evaluate">
+        <id column="id" property="id"/>
+        <result column="content" property="content"/>
+        <result column="star" property="star"/>
+        <result column="createDate" property="createDate"/>
+        <association property="order" select="com.baizhi.dao.OrderDao.selectOne" column="orderid"/>
+        <association property="user" select="com.baizhi.dao.UserDao.selectOne" column="userid"/>
+    </resultMap>
+
+    <!--查询所有用户的评价-->
+    <select id="selectAll" resultMap="evaluateMap">
+        select id,content,star,createDate,orderid,userid from kfsy_evaluate
+    </select>
+
+
+    <!--根据评价内容模糊查询-->
+    <select id="selectByContent" parameterType="String" resultMap="evaluateMap">
+        select id,content,star,createDate,orderid,userid from kfsy_evaluate where content like concat('%',#{content},'%')
+    </select>
+
+    <!--根据评价星级查询-->
+    <select id="selectByStar" parameterType="String" resultMap="evaluateMap">
+        select id,content,star,createDate,orderid,userid from kfsy_evaluate where star = #{star}
+    </select>
+  
+</mapper>

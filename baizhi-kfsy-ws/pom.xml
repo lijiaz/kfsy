@@ -1,0 +1,30 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <parent>
+        <artifactId>baizhi-parent</artifactId>
+        <groupId>com.baizhi</groupId>
+        <version>1.0-RELEASE</version>
+        <relativePath>../baizhi-parent/pom.xml</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>baizhi-kfsy-ws</artifactId>
+    <packaging>war</packaging>
+    <name>baizhi-kfsy-ws Maven Webapp</name>
+    <url>http://maven.apache.org</url>
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.baizhi</groupId>
+            <artifactId>baizhi-kfsy-sys</artifactId>
+            <version>1.0-RELEASE</version>
+        </dependency>
+    </dependencies>
+    <build>
+        <finalName>baizhi-kfsy-ws</finalName>
+    </build>
+</project>

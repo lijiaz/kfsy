@@ -31,5 +31,5 @@
 </script>
 
 <div>
-   <div id="charts" style="width:350px;height: 300px;"></div>
+   <div id="charts" style="width:350px;height: 300px;margin-left: 50px;margin-top:20px;"></div>
 </div>

@@ -7,7 +7,6 @@ import com.baizhi.entity.Tp;
 import com.baizhi.service.ThemeService;
 import com.baizhi.service.TpService;
 import com.github.pagehelper.Page;
-import org.apache.commons.io.FilenameUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,10 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * 药品种类Controller
@@ -37,17 +33,7 @@ public class ThemeController {
     @ResponseBody
     public void upload(MultipartFile file,String name,String description,HttpServletRequest request){
         String realPath = request.getSession().getServletContext().getRealPath("/");
-        File f = new File(realPath, "themeimg");
-        if(!f.exists()){
-           f.mkdirs();
-        }
-        String newFileName = UUID.randomUUID().toString() +"."+ FilenameUtils.getExtension(file.getOriginalFilename());
-        try {
-            file.transferTo(new File(f,newFileName));
-            themeService.add(new Theme(null,name,"/themeimg/"+newFileName,description,null));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        themeService.add(file,name,description,realPath);
     }
 
     //分页查询所有药品主题

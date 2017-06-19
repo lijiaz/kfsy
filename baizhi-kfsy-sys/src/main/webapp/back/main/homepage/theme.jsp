@@ -46,12 +46,11 @@
                 }
             },{
                 align:"center",
-                width:200,
+                width:150,
                 title:"操作",
                 field:"options",
                 formatter: function(value,row,index){
-                    return "<a class='del' onClick=\"deleteTheme('"+ row.id +"')\"  href='javascript:;'>删除</a>&nbsp;&nbsp;"+
-                            "<a class='detail' onClick=\"gett('"+ row.id +"')\" href='javascript:;'>详情</a>";
+                    return "<a class='del' onClick=\"deleteTheme('"+ row.id +"')\"  href='javascript:;'>删除</a>&nbsp;&nbsp;";
                 }
             }]],
             onLoadSuccess:function(data){
@@ -114,21 +113,6 @@
         })
     }
 
-    /*function doUpdate(){
-        $("#").form('submit',{
-            url:"",
-            success:function(){
-                $ut.dialog('close');
-                $ttb.datagrid('load');
-                $.messager.show({
-                    title:'修改状态',
-                    msg:'修改成功！',
-                    timeout:3000,
-                    showType:'slide'
-                });
-            }
-        });
-    }*/
 </script>
 
 <div class="easyui-layout" data-options="fit:true">

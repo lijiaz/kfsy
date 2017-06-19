@@ -3,16 +3,13 @@ import com.baizhi.entity.DataGrid;
 import com.baizhi.entity.LbImage;
 import com.baizhi.service.LbImageService;
 import com.github.pagehelper.Page;
-import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
-import java.io.IOException;
-import java.util.UUID;
 
 /**
  * Created by MaXn on 2017/6/13.
@@ -26,19 +23,9 @@ public class LbImageController {
 
     @RequestMapping("/upload")
     @ResponseBody
-    public void upload(MultipartFile file, String name,String status, HttpServletRequest request){
+    public void upload(MultipartFile file, String name, String status, HttpServletRequest request){
         String realPath = request.getSession().getServletContext().getRealPath("/");
-        File f = new File(realPath, "lbimg");
-        if(!f.exists()){
-            f.mkdirs();
-        }
-        String newFileName = UUID.randomUUID().toString() +"."+ FilenameUtils.getExtension(file.getOriginalFilename());
-        try {
-            file.transferTo(new File(f,newFileName));
-            lbImageService.add(new LbImage(null,name,"/lbimg/"+newFileName,status));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        lbImageService.add(file,name,status,realPath);
     }
 
     @RequestMapping("/getAll")

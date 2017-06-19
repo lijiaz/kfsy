@@ -15,11 +15,15 @@
     </context:component-scan>
 
     <!--设置数据源-->
-    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
         <property name="driverClassName" value="${mysql.driver}"/>
         <property name="url" value="${mysql.url}"/>
         <property name="username" value="${mysql.username}"/>
         <property name="password" value="${mysql.password}"/>
+        <property name="initialSize" value="1"/>  <!--配置初始化连接池数量-->
+        <property name="minIdle" value="1"/>  <!--配置最小连接池数量-->
+        <property name="maxActive" value="20"/>  <!--配置最大活跃连接数-->
+        <property name="maxWait" value="60000"/>  <!--最大连接超时等待时间 单位毫秒-->
     </bean>
 
     <!--配置分页插件-->
@@ -57,7 +61,34 @@
     <!--开启注解-->
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
+    <!--配置定时任务-->
+    <bean id="myJob" class="com.baizhi.timer.BackupDB"/>
+
+    <!--创建任务详情类-->
+    <bean id="jobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="myJob" />
+        <property name="targetMethod" value="backup"/>
+    </bean>
+
+    <!--创建触发器-->
+    <bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="cronExpression" value="0 1-2 * * * ? "/>
+        <property name="jobDetail" ref="jobDetail"/>
+    </bean>
+
+    <!--创建任务调度对象-->
+    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <ref bean="cronTrigger"/>
+            </list>
+        </property>
+    </bean>
+
+
+
     <!--引入spring-redis.xml-->
     <import resource="classpath:spring-redis.xml"/>
+
 
 </beans>

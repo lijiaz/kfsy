@@ -2,6 +2,7 @@ package com.baizhi.service;
 
 import com.baizhi.entity.LbImage;
 import com.github.pagehelper.Page;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
 public interface LbImageService {
 
     //插入一个轮播图
-    void add(LbImage lbImage);
+    void add(MultipartFile file, String name, String status,String realPath);
 
     //删除一个轮播图
     void remove(String id);
